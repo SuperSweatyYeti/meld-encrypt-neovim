@@ -207,9 +207,9 @@ local function cmd_edit()
   -- Create a scratch buffer with the decrypted content
   local edit_buf = vim.api.nvim_create_buf(true, false)
   buf_set_text(edit_buf, plaintext)
-  vim.api.nvim_set_option_value("filetype", "markdown", { buf = edit_buf })
-  vim.api.nvim_set_option_value("buftype", "acwrite", { buf = edit_buf })  -- triggers BufWriteCmd
   vim.api.nvim_buf_set_name(edit_buf, "[meld-encrypt] " .. vim.fn.fnamemodify(src_name, ":t"))
+  vim.api.nvim_set_option_value("buftype", "acwrite", { buf = edit_buf })
+  vim.api.nvim_set_option_value("filetype", "markdown", { buf = edit_buf })  -- LAST: triggers autocommands
   vim.api.nvim_set_option_value("modified", false, { buf = edit_buf })
 
   -- Keep the original file path, hint, and password securely in a Lua table
