@@ -171,7 +171,7 @@ local function cmd_edit()
   -- Check if an edit buffer for this file already exists
   local desired_name = "[meld-encrypt] " .. vim.fn.fnamemodify(src_name, ":t")
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_get_name(bufnr) == desired_name then
+    if vim.api.nvim_buf_is_loaded(bufnr) and vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t") == desired_name then
       if _edit_creds[bufnr] then
         -- Valid existing edit buffer — switch to it
         vim.api.nvim_set_current_buf(bufnr)
